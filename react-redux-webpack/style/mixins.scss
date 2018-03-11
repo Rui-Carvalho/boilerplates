@@ -1,0 +1,111 @@
+// =========== RESPONSIVENESS ===========
+// use like:
+// @include mobile {
+//     /* CSS styles here */
+// }
+
+@mixin mobile {
+  /* #### Mobile Phones Portrait or Landscape #### */
+  @media screen and (max-device-width: 640px) {
+    /* some CSS here */
+  }
+}
+@mixin mobilePortrait {
+  /* #### Mobile Phones Portrait #### */
+  @media screen and (max-device-width: 480px) and (orientation: portrait) {
+    /* some CSS here */
+  }
+}
+@mixin mobileLandscape {
+  /* #### Mobile Phones Landscape #### */
+  @media screen and (max-device-width: 640px) and (orientation: landscape) {
+    /* some CSS here */
+  }
+}
+@mixin iPhone4 {
+  /* #### iPhone 4+ Portrait or Landscape #### */
+  @media screen and (min-device-width: 320px) and (-webkit-min-device-pixel-ratio: 2){
+    /* some CSS here */
+  }
+}
+@mixin iPhone5 {
+  /* #### iPhone 5 Portrait or Landscape #### */
+  @media (device-height: 568px) and (device-width: 320px) and (-webkit-min-device-pixel-ratio: 2) {
+    /* some CSS here */
+  }
+}
+@mixin iPhone6 {
+  /* #### iPhone 6 and 6 plus Portrait or Landscape #### */
+  @media (min-device-height: 667px) and (min-device-width: 375px) and (-webkit-min-device-pixel-ratio: 3) {
+    /* some CSS here */
+  }
+}
+
+@mixin tablet {
+  /* #### Tablets Portrait or Landscape #### */
+  @media screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+    /* some CSS here */
+  }
+}
+
+@mixin desktop {
+  /* #### Desktops #### */
+  @media screen and (min-width: 1024px){
+    /* some CSS here */
+  }
+}
+
+@mixin scrollbars($size, $foreground-color, $background-color: mix($foreground-color, white,  50%), $thumbRadius:4px, $trackRadius:4px)
+{
+  &::-webkit-scrollbar,
+  ::-webkit-scrollbar
+  {
+    width:  $size;
+    height: $size;
+  }
+
+  &::-webkit-scrollbar-thumb,
+  ::-webkit-scrollbar-thumb
+  {
+    background: $foreground-color;
+    border-radius:$thumbRadius;
+  }
+
+  &::-webkit-scrollbar-track,
+  ::-webkit-scrollbar-track
+  {
+    background: $background-color;
+    border-radius:$trackRadius;
+  }
+
+  body
+  {
+    scrollbar-face-color: $foreground-color;
+    scrollbar-track-color: $background-color;
+  }
+}
+
+@mixin rgba($color, $opacity: 0.3) {
+  background: $color; /* The Fallback */
+  background: rgba($color, $opacity);
+}
+
+@mixin circle($background-color) {
+  display: inline-block;
+  background-color: $background-color;
+  width: 12px;
+  height: 12px;
+  border-radius: 6px;
+}
+
+@mixin styleAsModals {
+  @include scrollbars(8px, #363B47 , #191C24 , 4px, 0px);
+  width: 75%;
+  height: 70%;
+  max-width: 755px;
+  max-height: 690px;
+  box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.5);
+  background-color: #191C24;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
