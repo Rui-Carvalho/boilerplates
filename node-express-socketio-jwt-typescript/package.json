@@ -1,0 +1,33 @@
+{
+  "name": "projectname",
+  "version": "1.0.0",
+  "description": "Describe it",
+  "main": "index.js",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "config": "^1.26.1",
+    "express": "^4.15.3",
+    "express-jwt": "^5.3.0",
+    "handlebars": "^4.0.10",
+    "jsonwebtoken": "^7.4.1",
+    "jwks-rsa": "^1.2.0",
+    "node-cron": "^1.2.0",
+    "nodemailer": "^4.0.1",
+    "nodemailer-mailgun-transport": "^1.3.5",
+    "nodemon": "^1.11.0",
+    "onceler": "0.0.5",
+    "rpi-gpio": "^0.8.1",
+    "socket.io": "^2.0.3",
+    "socketio-jwt": "^4.5.0",
+    "superagent": "^3.5.2"
+  },
+  "devDependencies": {
+    "typescript": "^2.5.0-dev.20170629"
+  },
+  "scripts": {
+    "start": "NODE_ENV=development nodemon -d index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT"
+}

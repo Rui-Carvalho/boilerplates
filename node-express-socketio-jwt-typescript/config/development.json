@@ -1,0 +1,14 @@
+{
+  "API": {
+    "PORT": 4000
+  },
+  "MAILER": {
+    "DOMAIN": "<sandbox_id>.mailgun.org",
+    "KEY": "<mailgun_key>"
+  },
+  "AUTH0": {
+    "URI": "https://<proj_name>.auth0.com/.well-known/jwks.json",
+    "AUDIENCE": "default",
+    "ISSUER": "https://<proj_name>.eu.auth0.com/"
+  }
+}
