@@ -1,0 +1,22 @@
+{
+  "name": "algorithms-in-js-rui",
+  "version": "1.0.0",
+  "description": "Algorithms in Javascript by Rui Carvalho",
+  "author": "Rui Carvalho",
+  "license": "ISC",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "lint": "eslint src/** tests/**",
+    "test": "jest tests/",
+    "coverage": "jest --coverage tests/"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.10.0",
+    "eslint-plugin-jest": "^21.15.0",
+    "jest": "^22.4.3"
+  }
+}
