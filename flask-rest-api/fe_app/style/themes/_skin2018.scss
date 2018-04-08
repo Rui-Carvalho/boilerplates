@@ -1,0 +1,378 @@
+@import "../mixins";
+
+// =========== Variables ===========
+$panels_width: 755px;
+$modal_width: '755px';
+$panels_default_height: 690px;
+$panels_text_font_color: #97989B;
+
+$overlays_background_color_fallback: rgb(0,0,0);
+$overlays_background_color: rgba(19,23,35,0.75);
+
+$reskin_green: #87FFBD;
+
+@mixin modalOnSmallDevices($width:$modal_width) {
+  @media(max-width: $width) {
+    @content;
+  }
+}
+@mixin modalOnBigDevices() {
+  @media(min-width: $modal_width) {
+    @content;
+  }
+}
+
+
+// =========== Common layout elements ===========
+.skin2018 {
+  &__panel {
+    width: $panels_width;
+    height: $panels_default_height;
+    margin: 100px auto;
+    box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.5);
+    border: 0;
+    background-color: #fff;
+    border-radius: 4px;
+
+    &-title {
+      margin-bottom: 25px;
+      font-weight: lighter;
+    }
+
+    &-text {
+      width: 100%;
+      @include modalOnSmallDevices {
+        padding-left: 5px;
+        padding-right: 5px;
+      }
+      @include modalOnBigDevices {
+        padding-left: 22%;
+        padding-right: 22%;
+      }
+      color: $panels_text_font_color;
+      margin-bottom: 35px;
+    }
+
+    &-fields {
+      padding-left: 12%;
+      padding-right: 12%;
+      color: $panels_text_font_color;
+    }
+
+    &-field {
+      padding-top: 20px;
+
+      label {
+        @extend .reskin2017__label;
+      }
+
+      input {
+        @extend .reskin2017__input;
+      }
+
+      &.left {
+        width: 50%;
+        float: left;
+        padding-right: 10px;
+        position: relative;
+
+        img {
+          height: 18px;
+          position: absolute;
+          top: 60px;
+          left: 190px;
+        }
+      }
+
+      &.right {
+        width: 50%;
+        float: right;
+        padding-left: 10px;
+        position: relative;
+
+        img {
+          @extend .reskin2017__img;
+        }
+      }
+
+      &.full {
+        clear:both;
+        position: relative;
+
+        img {
+          @extend .reskin2017__img;
+        }
+      }
+    }
+
+    &-buttons {
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: 55px;
+      text-align: center;
+    }
+  }
+
+  &__page-body {
+    color: #fff;
+    text-align: center;
+    min-height: 100%;
+    height: 585px;
+  }
+
+  &__form-errors {
+    border: 1px solid #F05C6E;
+    border-radius: 4px;
+    font-weight: bold;
+    font-size: 13px;
+    line-height: 18px;
+    color: #F05C6E;
+    height: 55px;
+    margin-left: 12%;
+    margin-right: 12%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  @mixin placeholder-config($fontStyle) {
+    &::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+      color: #60636D;
+      font-style: $fontStyle;
+    }
+    &::-moz-placeholder { /* Firefox 19+ */
+      color: #60636D;
+      font-style: $fontStyle;
+    }
+    &:-ms-input-placeholder { /* IE 10+ */
+      color: #60636D;
+      font-style: $fontStyle;
+    }
+    &:-moz-placeholder { /* Firefox 18- */
+      color: #60636D;
+      font-style: $fontStyle;
+    }
+  }
+
+  &__input {
+    outline: 0;
+    height: 45px;
+    width: 100%;
+    color: #AFB1B3;
+    background-color: #2D313E;
+    border: 0;
+    border-radius: 4px;
+    padding: 8px;
+    font-weight: lighter;
+
+    &:focus {
+      border: 1px solid #C7C7C7;
+    }
+
+    @include placeholder-config('normal');
+
+    &__error {
+      border: 1px solid #F05C6E;
+      border-radius: 4px;
+      font-weight: bold;
+      font-size: 13px;
+      line-height: 18px;
+      color: #F05C6E;
+      height: 55px;
+      margin-left: 80px;
+      margin-right: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+
+  &__button {
+    text-transform: uppercase;
+    background-color: $reskin_green;
+    color: #000000;
+    outline: 0;
+    border-radius: 20px;
+    border: 0;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 8px 20px;
+    min-width: 130px;
+    @include modalOnSmallDevices {
+      width: 45%;
+      min-width: unset;
+    }
+    transition: all 200ms ease-in-out;
+    -webkit-transition: all 200ms ease-in-out;
+    -ms-transition: all 200ms ease-in-out;
+    -moz-transition: all 200ms ease-in-out;
+
+    &:hover {
+      -ms-transform: scale(1.1);
+      transform: scale(1.1);
+    }
+
+    &-transparent {
+      @extend .reskin2017__button;
+      float: left;
+      background-color: transparent;
+      color: #ffffff;
+      border: 1px solid #ffffff;
+    }
+  }
+
+  &__modal-overlay {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: $overlays_background_color_fallback;
+    background-color: $overlays_background_color;
+    z-index: 99999;
+  }
+
+  &__modal-container {
+    text-align: center;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+    width: 100%;
+    height: 100%;
+    padding: 65px;
+    @include modalOnSmallDevices {
+      padding: 7%;
+    }
+    color: #fff;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+
+  &__checkbox {
+    position: absolute; // take it out of document flow
+    opacity: 0; // hide it
+
+    & + label {
+      position: relative;
+      cursor: pointer;
+      padding: 0;
+      font-weight: normal;
+    }
+
+    // Box.
+    & + label:before {
+      content: '';
+      margin-right: 10px;
+      display: inline-block;
+      vertical-align: text-top;
+      width: 20px;
+      height: 20px;
+      background: transparent;
+      border: 1px solid $reskin_green;
+      border-radius: 2px;
+    }
+
+    // Box hover
+    &:hover + label:before {
+      background: $reskin_green;
+    }
+
+    // Box focus
+    &:focus + label:before {
+      box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.12);
+    }
+
+    // Box checked
+    &:checked + label:before {
+      background: transparent;
+    }
+
+    // Disabled state label.
+    &:disabled + label {
+      color: #b8b8b8;
+      cursor: auto;
+    }
+
+    // Disabled box.
+    &:disabled + label:before {
+      box-shadow: none;
+      background: $reskin_green;
+    }
+
+    // Check-mark. (Could be replaced with an image, but done here with shadows of a box)
+    &:checked + label:after {
+      content: '';
+      position: absolute;
+      left: 4px;
+      top: 10px;
+      background: transparent;
+      width: 2px;
+      height: 2px;
+      color: $reskin_green;
+      box-shadow:
+              -2px 0 0 $reskin_green,
+              inset 2px 0 0 $reskin_green,
+              2px 0 0 $reskin_green,
+              4px 0 0 $reskin_green,
+              4px -2px 0 $reskin_green,
+              4px -4px 0 $reskin_green,
+              4px -6px 0 $reskin_green,
+              4px -8px 0 $reskin_green,
+              4px -10px 0 $reskin_green,
+              4px -12px 0 $reskin_green;
+      transform: rotate(45deg);
+    }
+  }
+
+  &__label {
+    display: block;
+    text-align: left;
+    margin-bottom: 10px;
+    font-size: 14px;
+    color: #DEDFE0;
+  }
+
+  &__img {
+    height: 18px;
+    position: absolute;
+    top: 60px;
+    right: 10px;
+  }
+
+  &__password-strength-meter {
+
+    margin-top: 7px;
+
+    &-bar {
+      height: 4px;
+      margin-top: 5px;
+      padding: 0;
+      padding-right: 10px;
+
+      .strength-value {
+        height: 100%;
+        margin: 0 auto;
+        background-color: #363B47;
+        border-radius: 4px;
+      }
+    }
+
+    .strength-1:first-child .strength-value {
+      background-color:$Strength1;
+    }
+
+    .strength-2:nth-child(-n+2) .strength-value {
+      background-color:$Strength2;
+    }
+
+    .strength-3:nth-child(-n+3) .strength-value {
+      background-color:$Strength3;
+    }
+
+    .strength-4:nth-child(-n+4) .strength-value {
+      background-color:$Strength4;
+    }
+  }
+}

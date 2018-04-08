@@ -1,0 +1,121 @@
+@import "./colors";
+@import "themes/skin2018";
+@import "./components/signup";
+@import "./components/stripe-like-menu";
+
+button {
+    cursor: pointer;
+}
+
+.field
+
+.full-width
+{
+    width:100%;
+}
+
+.full-height
+{
+    height:100%;
+}
+
+.flex
+{
+    display:flex;
+}
+
+.flex-full
+{
+    //flex: 1;
+    flex: 1 1 0px; // firefox fix
+}
+
+.flex-column
+{
+    flex-direction:column;
+}
+
+.flex-row
+{
+    flex-direction:row;
+}
+
+.flex-a-center
+{
+    align-items:center;
+}
+
+.flex-j-start
+{
+    justify-content:flex-start;
+}
+
+.flex-j-center
+{
+    justify-content:center;
+}
+
+.flex-j-end
+{
+    justify-content:flex-end;
+}
+
+.flex-j-around
+{
+    justify-content: space-around;
+}
+
+.flex-j-between
+{
+    justify-content: space-between;
+}
+
+.flex-truncate
+{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.flex-self-center {
+    align-self: center;
+}
+
+.upper
+{
+    text-transform:uppercase;
+}
+
+.capitalize
+{
+    text-transform:capitalize;
+}
+
+.disabled
+{
+    cursor:not-allowed;
+}
+
+.no-border, .table>tbody>tr>td.no-border
+{
+    border:none;
+}
+
+.no-shadow
+{
+    box-shadow:none;
+}
+
+.bg-primary
+{
+    background:$Green;
+}
+
+.scrollable
+{
+    overflow-y:auto;
+}
+
+.close-button {
+    width: 18px;
+}

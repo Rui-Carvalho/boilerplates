@@ -1,0 +1,45 @@
+
+#  ==== TESTING THE APP ====
+
+# start the cashman application
+./bootstrap.sh &
+
+
+# ====== INCOMES ======
+# get incomes
+curl http://localhost:5000/incomes
+
+# add a new income
+
+curl -X POST -H "Content-Type: application/json" -d '{"amount": 300.0, "description": "loan payment"}' http://localhost:5000/incomes
+curl -X POST -H "Content-Type: application/json" -d '{"description": "lottery", "amount": 1000.0 }' http://localhost:5000/incomes
+
+# check if lottery was added
+curl localhost:5000/incomes
+
+# ====== EXPENSES ======
+# get expenses
+curl http://localhost:5000/expenses
+
+# add a new expense
+curl -X POST -H "Content-Type: application/json" -d '{
+    "amount": 2,
+    "description": "coffee"
+}' http://localhost:5000/expenses
+
+curl -X POST -H "Content-Type: application/json" -d '{"amount": 20,"description": "lottery ticket"}' http://localhost:5000/expenses
+
+
+#  ==== DOCKERIZING THE APP ====
+
+# build the image
+docker build -t cashman .
+
+# run a new docker container named cashman
+docker run --name cashman -d -p 5000:5000 cashman
+
+# Getting inside the container
+docker exec -it cashman /bin/sh
+
+# fetch incomes from the dockerized instance
+curl http://localhost:5000/incomes/
