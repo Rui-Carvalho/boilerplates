@@ -3,7 +3,11 @@ const app         = express();
 const path        = require('path');
 const server      = require('http').createServer(app);
 const axios       = require('axios');
+const bodyParser  = require('body-parser');
 const querystring = require('querystring');
+const config      = require('./config');
+const cookie      = require('cookie-parser');
+const url         = require('url');
 
 const db          = require('./db_manager');
 const logic       = require('./logic');
@@ -21,11 +25,19 @@ const ajax = axios.create({
 const bodyParser = require('body-parser');
 app.use( bodyParser.json() );
 
+// Set the view engine to EJS
+app.set('view engine', 'ejs');
+
+// Add a cookie parsing functionality to our Express app
+app.use(cookie());
+
+// Parse JSON body and store result in req.body
+app.use(bodyParser.json());
+
 // ------------ EXPRESS ROUTES ------------
 require('./routes')(app, path, logic, db);
 
-
-// ------------ STATC RESOURCES ------------
+// ------------ STATIC RESOURCES ------------
 app.use('/node_modules', express.static(path.join(__dirname, 'node_modules')));
 app.use('/public', express.static(path.join(__dirname, 'public')));
 
