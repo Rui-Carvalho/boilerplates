@@ -1,3 +1,5 @@
+// ------------ CONFIGURATION ------------
+require('dotenv').config();
 const express     = require('express');
 const app         = express();
 const path        = require('path');
@@ -12,9 +14,6 @@ const url         = require('url');
 const db          = require('./db_manager');
 const logic       = require('./logic');
 
-
-// ------------ CONFIGURATION ------------
-require('dotenv').config();
 db.connectDBs();
 
 const ajax = axios.create({
@@ -22,7 +21,6 @@ const ajax = axios.create({
     headers: { 'Authorization': 'Client-ID ' + process.env.IMGUR_CLIENT_ID }
 });
 
-const bodyParser = require('body-parser');
 app.use( bodyParser.json() );
 
 // Set the view engine to EJS
